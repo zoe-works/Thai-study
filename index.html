@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Thai Study — タイ語学習</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+</head>
+<body>
+    <div id="loading" class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="app" class="app-container hidden">
+        <header class="app-header">
+            <button id="btn-back" class="btn-icon hidden">←</button>
+            <h1 id="screen-title">Thai Study</h1>
+            <div class="header-right">
+                <span id="score-display" class="badge">Score: 0</span>
+            </div>
+        </header>
+
+        <main id="screen-container">
+            <!-- 画面コンテンツがここに動的に生成される -->
+        </main>
+
+        <nav class="app-nav">
+            <button class="nav-item active" data-screen="home">
+                <span class="icon">🏠</span>
+                <span class="label">Home</span>
+            </button>
+            <button class="nav-item" data-screen="study">
+                <span class="icon">📖</span>
+                <span class="label">Study</span>
+            </button>
+            <button class="nav-item" data-screen="quiz">
+                <span class="icon">❓</span>
+                <span class="label">Quiz</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

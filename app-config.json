@@ -1,0 +1,50 @@
+{
+  "navigation": [
+    { "id": "home", "label": "ホーム", "icon": "🏠" },
+    { "id": "library", "label": "文字一覧", "icon": "📚" },
+    { "id": "trace", "label": "なぞり書き", "icon": "✏️" },
+    { "id": "status", "label": "進捗", "icon": "📈" }
+  ],
+  "screens": [
+    {
+      "id": "home",
+      "title": "メインメニュー",
+      "components": [
+        { "type": "hero", "text": "タイ語なぞり書き" },
+        { "type": "nav_button", "target": "library", "label": "文字を学ぶ" },
+        { "type": "nav_button", "target": "status", "label": "学習状況" }
+      ]
+    },
+    {
+      "id": "library",
+      "title": "文字一覧",
+      "components": [
+        { "type": "char_grid", "source": "thai_chars" }
+      ]
+    },
+    {
+      "id": "trace",
+      "title": "なぞりがき",
+      "components": [
+        { "type": "trace_canvas" },
+        { "type": "char_info" }
+      ]
+    },
+    {
+      "id": "status",
+      "title": "学習状況",
+      "components": [
+        { "type": "progress_chart" }
+      ]
+    }
+  ],
+  "thai_chars": [
+    {"id": "c1", "char": "ก", "name": "Kor Kai", "class": "Mid", "meaning": "鶏", "sound": "k"},
+    {"id": "c2", "char": "ข", "name": "Khor Khai", "class": "High", "meaning": "卵", "sound": "kh"},
+    {"id": "c3", "char": "ฃ", "name": "Khor Khuat", "class": "High", "meaning": "瓶", "sound": "kh"},
+    {"id": "c4", "char": "ค", "name": "Khor Khwai", "class": "Low", "meaning": "水牛", "sound": "kh"},
+    {"id": "c5", "char": "ฅ", "name": "Khor Khon", "class": "Low", "meaning": "人", "sound": "kh"},
+    {"id": "c6", "char": "ฆ", "name": "Khor Rakhang", "class": "Low", "meaning": "鐘", "sound": "kh"},
+    {"id": "c7", "char": "ง", "name": "Ngor Ngu", "class": "Low", "meaning": "蛇", "sound": "ng"}
+  ]
+}

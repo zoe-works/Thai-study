@@ -1,0 +1,9 @@
+{
+  "app_name": "Thai-study",
+  "config": {
+    "primary": "#EF3340",
+    "secondary": "#00247D",
+    "background": "#F8F9FA",
+    "storage_mode": "localStorage_only"
+  }
+}
