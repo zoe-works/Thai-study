@@ -150,7 +150,7 @@ class AppEngine {
                     canvas.height = rect.width; // Square canvas
                     
                     // Draw guide character (light gray)
-                    ctx.font = `${rect.width * 0.7}px 'Noto Sans Thai'`;
+                    ctx.font = `${rect.width * 0.7}px 'Angsana New', 'Noto Sans Thai'`;
                     ctx.fillStyle = '#f1f5f9';
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';

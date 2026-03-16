@@ -20,7 +20,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+    font-family: 'Inter', 'Angsana New', 'Noto Sans Thai', sans-serif;
     background: var(--bg-color);
     color: var(--text-main);
     min-height: 100vh;
@@ -311,7 +311,7 @@ body {
     font-size: 6rem;
     color: var(--secondary-color);
     margin-bottom: 10px;
-    font-family: 'Noto Sans Thai', sans-serif;
+    font-family: 'Angsana New', 'Noto Sans Thai', sans-serif;
 }
 
 #char-name {
