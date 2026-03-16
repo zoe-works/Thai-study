@@ -1,4 +1,5 @@
 const CONFIG = {
+    "version": "1.2.1",
     "init": "if(!localStorage.learned_count) localStorage.learned_count = 0;",
     "data": {
         "consonants": [
@@ -61,23 +62,23 @@ const CONFIG = {
     "screens": [
         {
             "id": "home",
-            "title": "タイ語学習",
+            "title": "Thai Study",
             "components": [
                 {"type": "text_display", "value": "学習を始めましょう", "size": "medium"},
-                {"type": "button", "label": "文字を覚える", "action": "navigate:study"},
-                {"type": "button", "label": "書き取り練習", "action": "navigate:trace"},
+                {"type": "button", "label": "文字を覚える", "action": "pick_random_char; navigate:study"},
+                {"type": "button", "label": "書き取り練習", "action": "pick_random_char; navigate:trace"},
                 {"type": "button", "label": "文字一覧を見る", "action": "navigate:library"},
-                {"type": "button", "label": "クイズに挑戦", "action": "navigate:quiz"}
+                {"type": "button", "label": "クイズに挑戦", "action": "navigate:quiz"},
+                {"type": "text_display", "value": "v1.2.1", "size": "small"}
             ]
         },
         {
             "id": "trace",
             "title": "書き取り",
-            "on_load": "pick_random_char",
             "components": [
                 {"type": "text_display", "value": "current_char.char", "size": "large"},
                 {"type": "trace_canvas", "target": "current_char.char"},
-                {"type": "button", "label": "次へ", "action": "pick_random_char"}
+                {"type": "button", "label": "ランダムに次へ", "action": "pick_random_char"}
             ]
         },
         {
@@ -90,12 +91,11 @@ const CONFIG = {
         {
             "id": "study",
             "title": "文字学習",
-            "on_load": "pick_random_char",
             "components": [
                 {"type": "text_display", "value": "current_char.char", "size": "large"},
                 {"type": "text_display", "value": "current_char.name", "size": "small"},
                 {"type": "text_display", "value": "current_char.meaning", "size": "small"},
-                {"type": "button", "label": "次へ", "action": "pick_random_char"}
+                {"type": "button", "label": "ランダムに次へ", "action": "pick_random_char"}
             ]
         },
         {

@@ -23,7 +23,7 @@ body {
     font-family: 'Inter', 'Maitree', 'Angsana New', 'Noto Sans Thai', sans-serif;
     background: var(--bg-color);
     color: var(--text-main);
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -32,7 +32,7 @@ body {
 .app-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
@@ -78,7 +78,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding-bottom: 5rem;
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Specific Component Styles */
@@ -167,7 +168,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 5rem;
+    height: calc(5rem + env(safe-area-inset-bottom));
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);

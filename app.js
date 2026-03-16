@@ -203,6 +203,7 @@ class AppEngine {
     }
 
     resolveValue(path) {
+        if (path === 'version') return this.config.version;
         if (!path.includes('.')) return path;
         const parts = path.split('.');
         let val = this.state;
