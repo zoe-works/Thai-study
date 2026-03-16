@@ -135,6 +135,68 @@ class AppEngine {
                 });
                 return grid;
 
+            case 'trace_canvas':
+                const container = document.createElement('div');
+                container.className = 'trace-container';
+                
+                const canvas = document.createElement('canvas');
+                canvas.className = 'trace-canvas';
+                const ctx = canvas.getContext('2d');
+                
+                // Set canvas size based on container
+                setTimeout(() => {
+                    const rect = container.getBoundingClientRect();
+                    canvas.width = rect.width;
+                    canvas.height = rect.width; // Square canvas
+                    
+                    // Draw guide character (light gray)
+                    ctx.font = `${rect.width * 0.7}px 'Noto Sans Thai'`;
+                    ctx.fillStyle = '#f1f5f9';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(this.resolveValue(comp.target), canvas.width / 2, canvas.height / 2);
+                }, 0);
+
+                let drawing = false;
+                const startDraw = (e) => {
+                    drawing = true;
+                    ctx.beginPath();
+                    const pos = this.getCanvasPos(canvas, e);
+                    ctx.moveTo(pos.x, pos.y);
+                };
+                const doDraw = (e) => {
+                    if (!drawing) return;
+                    e.preventDefault();
+                    const pos = this.getCanvasPos(canvas, e);
+                    ctx.lineTo(pos.x, pos.y);
+                    ctx.lineWidth = 10;
+                    ctx.lineCap = 'round';
+                    ctx.strokeStyle = '#6366f1';
+                    ctx.stroke();
+                };
+                const stopDraw = () => { drawing = false; };
+
+                canvas.addEventListener('mousedown', startDraw);
+                canvas.addEventListener('mousemove', doDraw);
+                canvas.addEventListener('mouseup', stopDraw);
+                canvas.addEventListener('touchstart', startDraw);
+                canvas.addEventListener('touchmove', doDraw);
+                canvas.addEventListener('touchend', stopDraw);
+
+                const clearBtn = document.createElement('button');
+                clearBtn.className = 'btn';
+                clearBtn.textContent = '消去';
+                clearBtn.onclick = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    // redraw guide
+                    ctx.fillStyle = '#f1f5f9';
+                    ctx.fillText(this.resolveValue(comp.target), canvas.width / 2, canvas.height / 2);
+                };
+
+                container.appendChild(canvas);
+                container.appendChild(clearBtn);
+                return container;
+
             default:
                 return null;
         }
@@ -234,6 +296,16 @@ class AppEngine {
 
     updateGlobalUI() {
         this.scoreDisplay.textContent = `Score: ${this.state.score}`;
+    }
+
+    getCanvasPos(canvas, e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+        };
     }
 
     showToast(message) {

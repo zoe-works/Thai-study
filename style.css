@@ -426,3 +426,29 @@ body {
 }
 
 .hidden { display: none !important; }
+
+/* Trace Mode Styles */
+.trace-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.trace-canvas {
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    touch-action: none;
+    cursor: crosshair;
+    border: 2px solid var(--glass-border);
+}
+
+.trace-canvas:active {
+    border-color: var(--primary);
+}
