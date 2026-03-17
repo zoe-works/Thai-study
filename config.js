@@ -1,5 +1,5 @@
 const CONFIG = {
-    "version": "1.2.4",
+    "version": "1.2.6",
     "init": "if(!localStorage.learned_count) localStorage.learned_count = 0;",
     "data": {
         "consonants": [
@@ -69,7 +69,7 @@ const CONFIG = {
                 {"type": "button", "label": "書き取り練習", "action": "next_char; navigate:trace"},
                 {"type": "button", "label": "文字一覧を見る", "action": "navigate:library"},
                 {"type": "button", "label": "クイズに挑戦", "action": "navigate:quiz"},
-                {"type": "text_display", "value": "v1.2.2", "size": "small"}
+                {"type": "text_display", "value": "version", "size": "small"}
             ]
         },
         {
