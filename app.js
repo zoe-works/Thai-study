@@ -229,7 +229,7 @@ class AppEngine {
         const parts = path.split('.');
         let val = this.state;
         for (const part of parts) {
-            if (val[part] === undefined) return path;
+            if (val[part] === undefined) return "";
             val = val[part];
         }
         return val;

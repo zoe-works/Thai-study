@@ -78,6 +78,8 @@ const CONFIG = {
             "components": [
                 {"type": "mode_toggle"},
                 {"type": "text_display", "value": "current_char.char", "size": "large"},
+                {"type": "text_display", "value": "current_char.name", "size": "small"},
+                {"type": "text_display", "value": "current_char.meaning", "size": "small"},
                 {"type": "trace_canvas", "target": "current_char.char"},
                 {"type": "button", "label": "次へ", "action": "next_char"}
             ]
