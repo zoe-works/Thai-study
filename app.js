@@ -12,6 +12,7 @@ class AppEngine {
             learned_count: parseInt(localStorage.learned_count || 0),
             current_char: config.data.consonants[0],
             quiz_options: [],
+            studyMode: localStorage.studyMode || 'random', // 'random' or 'sequential'
         };
 
         this.screenContainer = document.getElementById('screen-container');
@@ -197,6 +198,26 @@ class AppEngine {
                 container.appendChild(clearBtn);
                 return container;
 
+            case 'mode_toggle':
+                const toggleContainer = document.createElement('div');
+                toggleContainer.className = 'mode-toggle-container';
+                const modes = [
+                    { id: 'random', label: 'ランダム' },
+                    { id: 'sequential', label: '順番に' }
+                ];
+                modes.forEach(m => {
+                    const mBtn = document.createElement('button');
+                    mBtn.className = `toggle-btn ${this.state.studyMode === m.id ? 'active' : ''}`;
+                    mBtn.textContent = m.label;
+                    mBtn.onclick = () => {
+                        this.state.studyMode = m.id;
+                        localStorage.studyMode = m.id;
+                        this.refreshScreen();
+                    };
+                    toggleContainer.appendChild(mBtn);
+                });
+                return toggleContainer;
+
             default:
                 return null;
         }
@@ -240,8 +261,12 @@ class AppEngine {
             case 'speak':
                 this.speak(this.resolveValue(arg));
                 break;
+            case 'next_char':
+                this.nextChar();
+                this.refreshScreen();
+                break;
             case 'next_question':
-                this.pickRandomChar();
+                this.nextChar();
                 this.generateOptions();
                 this.refreshScreen();
                 break;
@@ -261,6 +286,17 @@ class AppEngine {
                     }
                     this.updateGlobalUI();
                 }
+        }
+    }
+
+    nextChar() {
+        const pool = [...this.config.data.consonants, ...this.config.data.vowels];
+        if (this.state.studyMode === 'random') {
+            this.state.current_char = pool[Math.floor(Math.random() * pool.length)];
+        } else {
+            const currentIndex = pool.findIndex(c => c.id === this.state.current_char.id);
+            const nextIndex = (currentIndex + 1) % pool.length;
+            this.state.current_char = pool[nextIndex];
         }
     }
 

@@ -1,5 +1,5 @@
 const CONFIG = {
-    "version": "1.2.1",
+    "version": "1.2.2",
     "init": "if(!localStorage.learned_count) localStorage.learned_count = 0;",
     "data": {
         "consonants": [
@@ -65,20 +65,21 @@ const CONFIG = {
             "title": "Thai Study",
             "components": [
                 {"type": "text_display", "value": "学習を始めましょう", "size": "medium"},
-                {"type": "button", "label": "文字を覚える", "action": "pick_random_char; navigate:study"},
-                {"type": "button", "label": "書き取り練習", "action": "pick_random_char; navigate:trace"},
+                {"type": "button", "label": "文字を覚える", "action": "next_char; navigate:study"},
+                {"type": "button", "label": "書き取り練習", "action": "next_char; navigate:trace"},
                 {"type": "button", "label": "文字一覧を見る", "action": "navigate:library"},
                 {"type": "button", "label": "クイズに挑戦", "action": "navigate:quiz"},
-                {"type": "text_display", "value": "v1.2.1", "size": "small"}
+                {"type": "text_display", "value": "v1.2.2", "size": "small"}
             ]
         },
         {
             "id": "trace",
             "title": "書き取り",
             "components": [
+                {"type": "mode_toggle"},
                 {"type": "text_display", "value": "current_char.char", "size": "large"},
                 {"type": "trace_canvas", "target": "current_char.char"},
-                {"type": "button", "label": "ランダムに次へ", "action": "pick_random_char"}
+                {"type": "button", "label": "次へ", "action": "next_char"}
             ]
         },
         {
@@ -92,16 +93,17 @@ const CONFIG = {
             "id": "study",
             "title": "文字学習",
             "components": [
+                {"type": "mode_toggle"},
                 {"type": "text_display", "value": "current_char.char", "size": "large"},
                 {"type": "text_display", "value": "current_char.name", "size": "small"},
                 {"type": "text_display", "value": "current_char.meaning", "size": "small"},
-                {"type": "button", "label": "ランダムに次へ", "action": "pick_random_char"}
+                {"type": "button", "label": "次へ", "action": "next_char"}
             ]
         },
         {
             "id": "quiz",
             "title": "4択クイズ",
-            "on_load": "pick_random_char; generate_options",
+            "on_load": "next_char; generate_options",
             "components": [
                 {"type": "text_display", "value": "current_char.char", "size": "large"},
                 {"type": "button_group", "options": "quiz_options", "target": "current_char.sound", "validate": "validate_quiz"}
