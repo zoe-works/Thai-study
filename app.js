@@ -159,16 +159,20 @@ class AppEngine {
                 }, 0);
 
                 let drawing = false;
+                let canvasRect = null;
+
                 const startDraw = (e) => {
+                    if (e.type === 'touchstart') e.preventDefault();
                     drawing = true;
+                    canvasRect = canvas.getBoundingClientRect();
                     ctx.beginPath();
-                    const pos = this.getCanvasPos(canvas, e);
+                    const pos = this.getCanvasPos(canvas, e, canvasRect);
                     ctx.moveTo(pos.x, pos.y);
                 };
                 const doDraw = (e) => {
                     if (!drawing) return;
                     e.preventDefault();
-                    const pos = this.getCanvasPos(canvas, e);
+                    const pos = this.getCanvasPos(canvas, e, canvasRect);
                     ctx.lineTo(pos.x, pos.y);
                     ctx.lineWidth = 10;
                     ctx.lineCap = 'round';
@@ -180,8 +184,8 @@ class AppEngine {
                 canvas.addEventListener('mousedown', startDraw);
                 canvas.addEventListener('mousemove', doDraw);
                 canvas.addEventListener('mouseup', stopDraw);
-                canvas.addEventListener('touchstart', startDraw);
-                canvas.addEventListener('touchmove', doDraw);
+                canvas.addEventListener('touchstart', startDraw, { passive: false });
+                canvas.addEventListener('touchmove', doDraw, { passive: false });
                 canvas.addEventListener('touchend', stopDraw);
 
                 const clearBtn = document.createElement('button');
@@ -335,8 +339,8 @@ class AppEngine {
         this.scoreDisplay.textContent = `Score: ${this.state.score}`;
     }
 
-    getCanvasPos(canvas, e) {
-        const rect = canvas.getBoundingClientRect();
+    getCanvasPos(canvas, e, cachedRect = null) {
+        const rect = cachedRect || canvas.getBoundingClientRect();
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
         return {

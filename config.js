@@ -1,5 +1,5 @@
 const CONFIG = {
-    "version": "1.2.6",
+    "version": "1.2.7",
     "init": "if(!localStorage.learned_count) localStorage.learned_count = 0;",
     "data": {
         "consonants": [
